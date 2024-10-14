@@ -1,0 +1,6 @@
+[
+    {
+        "trigger": "/create",
+        "response": "hello world"
+    }
+]

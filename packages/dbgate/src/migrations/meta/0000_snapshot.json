@@ -1,0 +1,48 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "bbf17cc2-cedf-40b6-87a6-6034bd631a2d",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "dynamic_config": {
+      "name": "dynamic_config",
+      "columns": {
+        "key": {
+          "name": "key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "value": {
+          "name": "value",
+          "type": "blob",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "dynamic_config_key_unique": {
+          "name": "dynamic_config_key_unique",
+          "columns": [
+            "key"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
