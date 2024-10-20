@@ -1,5 +1,4 @@
-import { migrate } from "drizzle-orm/bun-sqlite/migrator";
-
+import { migrate } from "drizzle-orm/node-postgres/migrator"
 import { config } from "./config/index.ts";
 import {LoggerService} from "../../shared/services/logger.ts";
 import { db } from "./db.ts";

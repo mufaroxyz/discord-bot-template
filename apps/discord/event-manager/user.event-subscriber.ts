@@ -1,12 +1,11 @@
 import { discordContainer } from "../discord.ts";
-import type { ClientEvents, Message } from "discord.js";
-
-import autoReplyConfig from "../temp-config/auto-reply.json" with { type: "json" };
+import type { Message } from "discord.js";
+import {dynamicConfigService} from "../index.ts";
 
 export class DiscordUserEventSubscriber {
     private deps = discordContainer;
 
-    public async subscribe() {
+    public subscribe() {
         this.deps.logger.info("Subscribing to discord user events");
 
         const discord = this.deps.discordService;
@@ -20,23 +19,35 @@ export class DiscordUserEventSubscriber {
 
     async sendAutoReply(m: Message) {
         const userId = m.author.id;
+        const cache = this.deps.autoReplyCache;
         if (userId === this.deps.discordService?.user?.id) {
             return;
         }
 
         const content = m.content.toLowerCase();
+        const autoReply = cache.getAll();
+        if (autoReply.size === 0) {
+            const autoReplyConfig = await dynamicConfigService.get("auto_response");
 
-        for (const entry of autoReplyConfig) {
-            const { trigger, response } = entry;
+            if (!autoReplyConfig || autoReplyConfig.length === 0) {
+                return;
+            }
+
+            autoReplyConfig.forEach((response) => {
+                cache.set(response.trigger, response);
+            });
+        }
+
+        for (const [trigger, response] of autoReply) {
             if (content.includes(trigger)) {
                 this.deps.logger.info({
-                    message: "Auto-reply triggered",
+                    message: `Auto-replying to ${m.author.username}#${m.author.discriminator}`,
                     obj: {
-                        userId,
                         trigger,
+                        response: response.response
                     }
                 });
-                m.reply(response);
+                m.reply(response.response);
             }
         }
     }

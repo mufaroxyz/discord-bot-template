@@ -3,18 +3,28 @@ import DiscordService from "./services/client.ts";
 import {LoggerService} from "../../packages/shared/services/logger.ts";
 import { DiscordEventSubscriber } from "./event-manager/discord.event-subscriber.ts";
 import { DiscordUserEventSubscriber } from "./event-manager/user.event-subscriber.ts";
+import {KvCache} from "./services/kv.ts";
 
 export type DiscordContainer = {
   discordService?: DiscordService;
   discordEventSubscriber?: DiscordEventSubscriber;
   discordUserEventSubscriber?: DiscordUserEventSubscriber;
+  autoReplyCache: KvCache<{
+    trigger: string;
+    response: string;
+  }>
   logger: LoggerService;
 }
 
 const logger = new LoggerService("Discord")
+const autoReplyCache = new KvCache<{
+    trigger: string;
+    response: string;
+    }>(30 * 1000 * 60);
 
 const discordContainer: DiscordContainer = {
   logger,
+  autoReplyCache
 };
 
 const discordService = new DiscordService({

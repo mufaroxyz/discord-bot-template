@@ -1,6 +1,6 @@
-import { blob, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { pgTable, text, json } from "drizzle-orm/pg-core";
 
-export const dynamicConfig = sqliteTable("dynamic_config", {
+export const dynamicConfig = pgTable("dynamic_config", {
     key: text().unique(),
-    value: blob({ mode: "json" })
+    value: json()
 })

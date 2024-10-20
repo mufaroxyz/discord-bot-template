@@ -1,7 +1,7 @@
 import winston, { createLogger } from "winston";
 import {config} from "../config.ts";
-
 const { combine, timestamp, label, printf } = winston.format;
+
 
 const format = printf(({ level, message, label, timestamp, obj }) => {
     if (obj) {
