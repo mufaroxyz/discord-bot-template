@@ -1,4 +1,4 @@
-import { discordContainer } from "../discord";
+import { discordContainer } from "../discord.ts";
 import type { ClientEvents, Message } from "discord.js";
 
 export class DiscordEventSubscriber {

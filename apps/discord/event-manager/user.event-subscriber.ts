@@ -1,7 +1,7 @@
-import { discordContainer } from "../discord";
+import { discordContainer } from "../discord.ts";
 import type { ClientEvents, Message } from "discord.js";
 
-import autoReplyConfig from "../temp-config/auto-reply.json";
+import autoReplyConfig from "../temp-config/auto-reply.json" with { type: "json" };
 
 export class DiscordUserEventSubscriber {
     private deps = discordContainer;

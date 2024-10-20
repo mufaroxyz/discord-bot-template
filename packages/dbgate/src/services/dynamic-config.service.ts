@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
-import { db } from "..";
-import { dynamicConfig } from "../schema";
-import { dynamicConfigSchema, type DynamicConfig } from "../schemas/dynamic-config.schema";
+import { db } from "../index.ts";
+import { dynamicConfig } from "../schema.ts";
+import { dynamicConfigSchema, type DynamicConfig } from "../schemas/dynamic-config.schema.ts";
 
 export default class DynamicConfigService {
     public async getConfig(): Promise<DynamicConfig> {

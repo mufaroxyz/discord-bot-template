@@ -1,4 +1,5 @@
 import winston, { createLogger } from "winston";
+import {config} from "../config.ts";
 
 const { combine, timestamp, label, printf } = winston.format;
 
@@ -19,8 +20,8 @@ export class LoggerService extends winston.Logger {
                 format
             ),
             transports: [
-                new winston.transports.File({ filename: "error.log", level: "error" }),
-                new winston.transports.File({ filename: "combined.log", level: "error" }),
+                new winston.transports.File({ filename: "error.log", level: "error", dirname: config.LOG_PATH }),
+                new winston.transports.File({ filename: "combined.log", level: "error", dirname: config.LOG_PATH }),
             ]
         });
 
@@ -30,7 +31,7 @@ export class LoggerService extends winston.Logger {
         this.error = logger.error.bind(this);
         this.warn = logger.warn.bind(this);
 
-        if (process.env.NODE_ENV !== "production") {
+        if (Deno.env.get("NODE_ENV") !== "production") {
             this.add(new winston.transports.Console({
                 format: combine(
                     label({ label: labelMsg }),

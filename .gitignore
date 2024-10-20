@@ -181,3 +181,5 @@ database.sqlite
 .env
 node_modules
 .turbo
+
+data

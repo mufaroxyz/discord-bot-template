@@ -1,7 +1,7 @@
 import type { Context } from "hono";
 import type { HTTPResponseError } from "hono/types";
-import type { BaseError } from "../errors/errors";
-import { createErrorResponse } from "./error-response";
+import type { BaseError } from "../errors/errors.ts";
+import { createErrorResponse } from "./error-response.ts";
 
 const onError = async (err: Error | HTTPResponseError, c: Context) => {
     const path = c.req.path;

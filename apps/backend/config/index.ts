@@ -4,4 +4,5 @@ const configSchema = z.object({
     BACKEND_PORT: z.string(),
 });
 
-export const config = configSchema.parse(process.env);
+
+export const config = configSchema.parse(Deno.env.toObject());

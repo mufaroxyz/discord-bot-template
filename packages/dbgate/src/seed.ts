@@ -1,8 +1,8 @@
 import { sql } from "drizzle-orm";
 import type { BunSQLiteDatabase } from "drizzle-orm/bun-sqlite";
-import type { AutoResponseData } from "./types";
-import { dynamicConfig } from "./schema";
-import { logger } from ".";
+import type { AutoResponseData } from "./types.d.ts";
+import { dynamicConfig } from "./schema.ts";
+import { logger } from "./index.ts";
 
 export default async function seed(db: BunSQLiteDatabase) {
     logger.info("Seeding database");

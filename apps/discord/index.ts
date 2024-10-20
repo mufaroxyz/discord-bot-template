@@ -1,5 +1,5 @@
-import { config } from "./config";
-import { discordContainer } from "./discord";
+import { config } from "./config/index.ts";
+import { discordContainer } from "./discord.ts";
 
 const main = async () => {
     const deps = discordContainer;

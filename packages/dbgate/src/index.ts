@@ -1,9 +1,8 @@
-
 import { migrate } from "drizzle-orm/bun-sqlite/migrator";
 
-import { config } from "./config";
-import { LoggerService } from "@discord-bot/shared/services/logger";
-import { db } from "./db";
+import { config } from "./config/index.ts";
+import {LoggerService} from "../../shared/services/logger.ts";
+import { db } from "./db.ts";
 
 const logger = new LoggerService("dbgate");
 

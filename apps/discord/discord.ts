@@ -1,8 +1,8 @@
 import { IntentsBitField } from "discord.js";
-import DiscordService from "./services/client";
-import { LoggerService } from "@discord-bot/shared/services/logger";
-import { DiscordEventSubscriber } from "./event-manager/discord.event-subscriber";
-import { DiscordUserEventSubscriber } from "./event-manager/user.event-subscriber";
+import DiscordService from "./services/client.ts";
+import {LoggerService} from "../../packages/shared/services/logger.ts";
+import { DiscordEventSubscriber } from "./event-manager/discord.event-subscriber.ts";
+import { DiscordUserEventSubscriber } from "./event-manager/user.event-subscriber.ts";
 
 export type DiscordContainer = {
   discordService?: DiscordService;

@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import DynamicConfigService from "@discord-bot/dbgate/src/services/dynamic-config.service";
+import DynamicConfigService from "../../../packages/dbgate/src/services/dynamic-config.service.ts";
 
 const dynamicConfig = new DynamicConfigService();
 const app = new Hono();
