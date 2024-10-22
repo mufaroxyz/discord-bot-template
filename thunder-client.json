@@ -1,0 +1,69 @@
+{
+    "info": {
+        "_postman_id": "fa4cc151-17b5-4633-b7d6-de6f23fde03e",
+        "name": "api",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "dynConfig",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/restricted/dynamicConfig",
+                    "path": [
+                        "api",
+                        "restricted",
+                        "dynamicConfig"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "x-api-key",
+                        "value": "aff81153df8b829fa5f0fee4f2bb25b4c4586c2b5f0d811baa9d17d7108babcf"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "dynConfig",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/api/restricted/dynamicConfig",
+                    "path": [
+                        "api",
+                        "restricted",
+                        "dynamicConfig"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "x-api-key",
+                        "value": "aff81153df8b829fa5f0fee4f2bb25b4c4586c2b5f0d811baa9d17d7108babcf"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"auto_response\": [],\n  \"tags\": {\n    \"privilegedRoles\": [\"1298176207166242837\"],\n    \"data\": {\n      \"asd\": {\n        \"response\": \"helloworld\"\n      }\n    }\n  }\n}"
+                }
+            }
+        }
+    ]
+}

@@ -4,7 +4,16 @@ const dynamicConfigSchema = z.object({
     auto_response: z.array(z.object({
         trigger: z.string(),
         response: z.string()
-    })).optional().default([])
+    })).optional().default([]),
+    tags: z.object({
+        privilegedRoles: z.array(z.string()),
+        data: z.record(z.object({
+            response: z.string()
+        }))
+    }).optional().default({
+        privilegedRoles: [],
+        data: {}
+    })
 }).refine(obj => {
     if (!Array.isArray(obj.auto_response)) {
         return false;

@@ -14,7 +14,36 @@ export class DiscordUserEventSubscriber {
             return;
         }
 
-        discord.on("messageCreate", this.sendAutoReply.bind(this));
+        discord.on("messageCreate", msg => {
+            this.sendTag(msg);
+            this.sendAutoReply(msg);
+        });
+    }
+
+    async sendTag(m: Message) {
+        if (!m.content.startsWith("-")) return;
+
+        const member = await this.deps.discordUtils?.fetchMember(m.author.id);
+
+        let cachedTags = this.deps.tagsCache.get();
+        if (!cachedTags) {
+            const tags = await dynamicConfigService.get("tags");
+            if (!tags) return this.deps.logger.error("Tags not found");
+            this.deps.tagsCache.set(tags);
+            cachedTags = tags;
+        }
+
+        if (!member?.roles.cache.hasAny(...cachedTags.privilegedRoles)) return;
+        
+        const tag = m.content.slice(1).toLowerCase();
+        const metadata = await dynamicConfigService.get("tags");
+        if (!metadata) return;
+
+        if (metadata.data[tag]) {
+            m.channel.isSendable() && m.channel.send(
+                `${metadata.data[tag].response}\n-# ${tag} - ${member.displayName}`
+            );
+        }
     }
 
     async sendAutoReply(m: Message) {
